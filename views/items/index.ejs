@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALL ITEMS</title>
+</head>
+<body>
+    <h3>here is your all items for bidding</h3>
+    <form method="GET" action="/items/new">
+        <button>add new item</button>
+    </form>
+    <hr>
+    <%for(let item of allItems){ %>
+    <div>
+        <h1>name:  <%= item.title %></h1>
+        <p> description:<%= item.description %></p>
+        <p>Starting Bid: $<%= item.startingPrice %></p>
+        <img src = "<%= item.image %>" alt="item image" width="200px" height="200px">
+        <br> 
+        <button><a href="/items/<%= item._id %>"> show in detail</a></button>
+    </div>     
+    <hr> 
+<%}%>
+</body>
+</html>
+

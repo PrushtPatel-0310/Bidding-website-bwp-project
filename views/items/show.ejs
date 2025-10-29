@@ -1,0 +1,18 @@
+<!-- this is use to show item in details -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>details of item <%= item.title%></title>
+    
+</head>
+<body>
+   <h3>item ID: <%= item._id%></h3>
+    <h3>item title: <%= item.title%></h3>
+     <h3>item description: <%= item.description%></h3>
+    <img src = <%= item.image %> alt="item image" width="200px" height="200px">
+    <h3>category: <%=item.category%></h3>
+    <h3>price: <%=item.startingPrice.toLocaleString("en-IN")%></h3>
+</body>
+</html>
