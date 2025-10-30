@@ -14,5 +14,9 @@
     <img src = <%= item.image %> alt="item image" width="200px" height="200px">
     <h3>category: <%=item.category%></h3>
     <h3>price: <%=item.startingPrice.toLocaleString("en-IN")%></h3>
+    <a href="/items/<%= item._id%>/edit">edit this item</a>
+    <form method="post" action="/items/<%=item._id%>?_method=DELETE">
+        <button style="background-color: maroon;">delete this post</button>
+    </form>
 </body>
 </html>

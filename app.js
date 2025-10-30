@@ -4,12 +4,17 @@ const mongoose = require("mongoose");
 const Item = require("./models/item.js")
 const mongoose_URL = "mongodb://127.0.0.1:27017/bidding"
 const path = require("path");
+const methodoverride = require("method-override");
+
+
 
 app.set("view engine" , "ejs");
 app.use(express.urlencoded({extended:true}));
 app.set("views" , path.join(__dirname , "/views"));
 app.use(express.static("public")); 
+app.use(methodoverride("_method"));
 
+//db connecion
 main()
 .then( ()=>{console.log("💕DB is connected")})
 .catch(err => console.log(err));
@@ -48,23 +53,25 @@ app.post("/items",(req,res)=>{
     newItem.save();
     res.redirect("/items");
 })
+//form for editing item
+app.get("/items/:id/edit" , async(req,res)=>{
+    let {id} =req.params;
+    let item = await Item.findById(id);
+    res.render("items/update.ejs",{item});
+})
+//updating item in DB
+app.put("/items/:id" , async(req,res)=>{
+    let {id} = req.params;
+    await Item.findByIdAndUpdate(id , req.body , {runValidators:true , new:true});
+    res.redirect(`/items/${id}`);
+})
 
-// //testing
-// app.get ("/testItem", async (req, res) =>{ 
-    
-//     let sampleListing = new Item({
-//  title: "My New Villa",
-// description: "By the beach",
-//  category:"electronic",
-//  startingPrice:500,
-
-// });
-
-// await sampleListing.save();
-// console.log ("sample was saved"); 
-// res. send ("successful testing done");
-// })
-
+//deleting item from DB
+app.delete("/items/:id" , async(req,res)=>{
+    let{id}=req.params;
+    await(Item.findByIdAndDelete(id));
+    res.redirect("/items");
+})
 
 app.listen(8080 , ()=>{
     console.log("👌server running on 8080 port");

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update details of item</title>
+</head>
+<body>
+    <h1>update your item with id: <%= item._id%></h1>
+    <form method ="post" action="/items/<%= item._id %>?_method=PUT">
+        <input type="text" name="title" value="<%= item.title %>">
+        <br><br>
+        <input type="text" name="description" value="<%= item.description %>">
+        <br><br>
+        <input type="number" name="startingPrice" value="<%= item.startingPrice %>">
+        <br><br>
+        <input type="text" name="image" value="<%= item.image %>">
+        <br><br>
+        <input type="text" name="category" value="<%= item.category %>">
+        <br><br>
+        <button type="submit">save changes</button>
+        <br>
+    </form>
+</body>
+</html>
