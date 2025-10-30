@@ -5,7 +5,7 @@ const Item = require("./models/item.js")
 const mongoose_URL = "mongodb://127.0.0.1:27017/bidding"
 const path = require("path");
 const methodoverride = require("method-override");
-
+const ejsMate = require("ejs-mate");
 
 
 app.set("view engine" , "ejs");
@@ -13,7 +13,8 @@ app.use(express.urlencoded({extended:true}));
 app.set("views" , path.join(__dirname , "/views"));
 app.use(express.static("public")); 
 app.use(methodoverride("_method"));
-
+app.use(express.static(path.join(__dirname,"/public")));
+app.engine("ejs", ejsMate);
 //db connecion
 main()
 .then( ()=>{console.log("💕DB is connected")})

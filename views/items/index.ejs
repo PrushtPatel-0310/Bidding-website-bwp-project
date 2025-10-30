@@ -1,27 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALL ITEMS</title>
-</head>
+<% layout("/layouts/boilerplate") %>
 <body>
-    <h3>here is your all items for bidding</h3>
-    <form method="GET" action="/items/new">
-        <button style="background-color:cadetblue;">add new item</button>
-    </form>
-    <hr>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1" style="margin:5px">
     <%for(let item of allItems){ %>
-    <div>
-        <h1>name:  <%= item.title %></h1>
-        <p> description:<%= item.description %></p>
-        <p>Starting Bid: $<%= item.startingPrice %></p>
-        <img src = "<%= item.image %>" alt="item image" width="200px" height="200px">
-        <br> 
-        <button style="background-color: aquamarine;"><a href="/items/<%= item._id %>"> show in detail</a></button>
-    </div>     
-    <hr> 
+        <a href="/items/<%=item._id%>">
+    <div class="card col" style="width: 18rem; margin:10px; border:none;">
+  <img src= <%=item.image%> class="card-img-top" alt="item image">
+  <div class="card-body">
+    <p class="card-text">
+        <%=item.title%>
+        <br>
+        $<%= item.startingPrice%>
+    </p>
+  </div>
+</div>
+ </a>
+<br>
 <%}%>
+</div>
+
 </body>
-</html>
+
 

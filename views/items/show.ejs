@@ -1,22 +1,22 @@
 <!-- this is use to show item in details -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>details of item <%= item.title%></title>
-    
-</head>
+<% layout("/layouts/boilerplate") %>
+
 <body>
-   <h3>item ID: <%= item._id%></h3>
-    <h3>item title: <%= item.title%></h3>
+    <br>
+    <div class="card " style="margin-left:450px;">
+  <img src="<%= item.image %>" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text"> <%= item.title%></div>
+</div>
+<div class="item-info">
+<h3>item ID: <%= item._id%></h3>
      <h3>item description: <%= item.description%></h3>
-    <img src = <%= item.image %> alt="item image" width="200px" height="200px">
     <h3>category: <%=item.category%></h3>
-    <h3>price: <%=item.startingPrice.toLocaleString("en-IN")%></h3>
-    <a href="/items/<%= item._id%>/edit">edit this item</a>
+    <h3>starting Bid price: <%=item.startingPrice.toLocaleString("en-IN")%></h3>
+</div>
+   
+    <form><button class="btn"><a href="/items/<%= item._id%>/edit">edit this item</a></button></form>
     <form method="post" action="/items/<%=item._id%>?_method=DELETE">
-        <button style="background-color: maroon;">delete this post</button>
+        <button class="btn-primary">delete this post</button>
     </form>
 </body>
-</html>
